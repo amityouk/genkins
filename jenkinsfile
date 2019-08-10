@@ -1,0 +1,25 @@
+def workspace;
+node ('master')
+{
+    stage('Checkcout')
+    {
+         checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/amityouk/genkins.git']]])
+         workspace = pwd()
+    }
+    stage('Static Code Analysis')
+    {
+        echo "Static Code Analysis"
+    }
+    stage('Build')
+    {
+        echo "Build the code"
+    }
+    stage('Unit Testing')
+    {
+        echo "Unit Testing"
+    }
+    stage('Delivery')
+    {
+        echo "Devliver the code"
+    }
+}
